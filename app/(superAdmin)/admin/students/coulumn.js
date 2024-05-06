@@ -1,0 +1,30 @@
+export const columns=[
+    {
+        header:"Name",
+        accessorKey:"name"
+    },
+    {
+        header:"Email",
+        accessorKey:"email"
+    },
+    {
+        header:"Father Name",
+        accessorKey:"father",
+    },
+    {
+        header:"Gender",
+        accessorKey:"gender",
+    },
+    {
+        header:"Address",
+        accessorKey:"address"
+    },
+    {
+        header:"Status",
+        accessorKey:"status"
+    },
+    {
+        header:"Action",
+        accessorKey:"action"
+    }
+]
