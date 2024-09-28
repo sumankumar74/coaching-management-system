@@ -1,20 +1,21 @@
 import Hero from "./ui/Hero";
-import AboutVision from "./ui/AboutVision";
-import Footer from "./ui/Footer";
 import CourseSection from "./ui/CourseSection";
 import Course from "../models/Course";
 import ConnectDb from "../utils/ConnectDb";
+import CategoriesBadges from "./ui/CategoriesBadges";
+import Category from "../models/Category";
+import { getCourse } from "../actions";
 
-export default async function Home() {
+export default async function Home({searchParams}) {
   await ConnectDb();
-  
-  let courses = await Course.find()
+  let courses = await getCourse({...searchParams})
+  let categories = await Category.find({})
   return (
    <>
    <Hero/>
-   <AboutVision/>
+   <CategoriesBadges items={categories}/>
    <CourseSection courses={courses}/>
-   <Footer/>
+   
    </>
   );
 }

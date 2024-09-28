@@ -23,7 +23,7 @@ const ImageForm = ({ initialData, courseId }) => {
             toggleEditing();
         }
         catch (error) {
-            toast.error("error updating course")
+            toast.error("something went wrong" + error.message)
         }
     }
     return (
@@ -53,21 +53,24 @@ const ImageForm = ({ initialData, courseId }) => {
                     <div className="flex mt-2 h-48 items-center justify-center bg-slate-200 rounded-md ">
                         <ImageIcon className="w-10 h-10 text-slate-500" />
                     </div>
-                ):(
+                ) : (
                     <div className="relative aspect-video mt-2">
-                        <Image alt="uplaod" fill className="object-cover rounded-md" src={initialData.image}/>
+                        <Image alt="uplaod" fill className="object-cover overflow-hidden rounded-md" src={initialData.image} />
                     </div>
                 )
-              )
+            )
             }
             {isEditing && (
-               <div>
-                <FileUpload endpoint="courseImage" onChange={(url)=>{
-                    if(url){
-                        onSubmit({image:url})
-                    }
-                }}/>
-               </div>
+                <div>
+                    <FileUpload endpoint="courseImage" onChange={(url) => {
+                        if (url) {
+                            onSubmit({ image: url })
+                        }
+                    }} />
+                    <div className="flex items-center gap-x-2">
+                        <p>16:9 aspect ratio recommend</p>
+                    </div>
+                </div>
             )}
 
         </div>

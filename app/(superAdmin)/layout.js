@@ -23,6 +23,7 @@ export default function RootLayout({ children }) {
         <main className="md:pl-56 h-full pt-[80px]">
           <Toaster/>
           {children}
+
         </main>
       </body>
     </html>

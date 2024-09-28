@@ -1,7 +1,9 @@
 "use client"
+import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
 import { formatPrice } from "@/lib/format"
+import { cn } from "@/lib/utils"
 import { ArrowUpDown, MoreHorizontal, Pencil } from "lucide-react"
 import Link from "next/link"
 
@@ -9,7 +11,7 @@ export const columns =[
     {
         accessorKey:"title",
         header:({column})=>{
-            return <Button variant="ghost" onClick={()=>column.toggleSorting(column.IsSorted()==="asc")}>
+            return <Button variant="ghost" onClick={()=>column.toggleSorting(column.getIsSorted()==="asc")}>
                 Title
                 <ArrowUpDown className="ml-2 w-4 h-4"/>
             </Button>
@@ -22,7 +24,7 @@ export const columns =[
     {
         accessorKey:"fee",
         header:({column})=>{
-            return <Button variant="ghost" onClick={()=>column.toggleSorting(column.IsSorted()==="asc")}>
+            return <Button variant="ghost" onClick={()=>column.toggleSorting(column.getIsSorted()==="asc")}>
                 Fee
                 <ArrowUpDown className="ml-2 w-4 h-4"/>
             </Button>
@@ -40,17 +42,28 @@ export const columns =[
     {
         accessorKey:"duration",
         header:({column})=>{
-            return <Button variant="ghost" onClick={()=>column.toggleSorting(column.IsSorted()==="asc")}>
+            return <Button variant="ghost" onClick={()=>column.toggleSorting(column.getIsSorted()==="asc")}>
                 Duration
                 <ArrowUpDown className="ml-2 w-4 h-4"/>
             </Button>
         },
     },
     {
-        accessorKey:"isPublished",
+        accessorKey:"status",
         header:({column})=>{
             return(
-                <Button></Button>
+                <Button variant="ghost" onClick={()=>column.toggleSorting(column.getIsSorted()==="asc")}>
+                    Status
+                    <ArrowUpDown className="w-4 h-4 ml-2"/>
+                </Button>
+            )
+        },
+        cell:({row})=>{
+            const status = row.getValue("status")
+            return(
+                <Badge className={cn("bg-slate-500 text-white hover:bg-slate-600", status=="Published" && "bg-sky-600 hover:bg-sky-700")}>
+                    {status}
+                </Badge>
             )
         }
     },
@@ -58,7 +71,7 @@ export const columns =[
         id:"Actions",
         header:"Action",
         cell:({row})=>{
-            const {id}= row.original;
+            const {_id}= row.original;
             return(
                 <DropdownMenu>
                     <DropdownMenuTrigger asChild>
@@ -67,10 +80,10 @@ export const columns =[
                         </Button>
                     </DropdownMenuTrigger>
                     <DropdownMenuContent align="end">
-                        <Link href={`/admin/course/${id}`} >
+                        <Link href={`/admin/courses/${_id}`} >
                             <DropdownMenuItem>
                                 <Pencil className="w-4 h-4"/>
-
+                                Edit Course
                             </DropdownMenuItem>
                         </Link>
                     </DropdownMenuContent>

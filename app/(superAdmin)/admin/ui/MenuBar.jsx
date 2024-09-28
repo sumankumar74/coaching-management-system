@@ -1,7 +1,6 @@
 "use client"
 import { cn } from "@/lib/utils";
 import { Filter, GraduationCap, IndianRupeeIcon, LayoutDashboard, List, User } from "lucide-react";
-import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 
 

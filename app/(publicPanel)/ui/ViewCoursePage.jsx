@@ -1,34 +1,56 @@
+import IconBadges from "@/components/IconBadges";
+import { Button } from "@/components/ui/button";
+import { formatDuration, formatPrice } from "@/lib/format";
+import { BarChart, Clock, List, ListChecks, Presentation } from "lucide-react";
 import Image from "next/image";
 
 const ViewCoursePage = ({ course }) => {
     return (
-        <div className="container mx-auto px-4">
-            <div className="py-8">
-                <h1 className="text-3xl font-semibold mb-4">{course.title}</h1>
-                <Image src={`/course_images/${course.image}`} alt={course.title} height={100} width={300} className=" object-cover mb-4" />
-                <p className="text-lg text-gray-800">{course.description}</p>
-                <div className="mt-8">
-                    <h2 className="text-xl font-semibold mb-4">Course Details</h2>
-                    <div className="flex  items-center mb-2 gap-20">
-                        <span className="text-gray-600">Fee:</span>
-                        <span className="text-gray-800">₹ {course.fee}</span>
+        <>
+        <div className="w-full h-56 bg-teal-600" >
+            <div className="px-[10%] py-10 flex flex-col gap-y-3 w-9/12 h-full ">
+                <h1 className="text-white text-3xl capitalize ">{course.title}</h1>
+                <div className="flex items-center  text-white text-md ">
+                  <List  className="w-4 h-4 mr-2"/>
+                    <span>{course.category?.name}</span>
+                </div>
+                <p className="text-md text-white">{course.description}</p>
+            </div>
+            <div className="flex justify-end relative right-[50px] ">
+                <div className="w-3/12 h-auto overflow-hidden bg-white border-teal-600 rounded-md border -mt-40">
+                    <Image  width={300} height={250} className="object-cover" src={course.image} alt={course.title} />
+                    <div className="p-4 space-y-2">
+                        <div className="flex items-center gap-x-2 ">
+                            <IconBadges size="sm" icon={Presentation} />
+                            <span>Instructor:{course.instructor}</span>
+                        </div>
+                        <div className="flex items-center gap-x-2 ">
+                            <IconBadges size="sm" icon={Clock} />
+                            <span>Duration:{formatDuration(course.duration)}</span>
+                        </div>
+                        <div className="flex gap-x-2 items-center">
+                            <IconBadges size="sm" icon={ListChecks} />
+                            <span>Prerequisites:{course.prerequisites}</span>
+                        </div>
+                        <div className="flex gap-x-2 items-center">
+                            <IconBadges size="sm" icon={BarChart} />
+                            <span>Difficulty:{course.difficulty}</span>
+                        </div>
+                        <div className="flex justify-between items-center">
+                            <span className="text-2xl">{formatPrice(course.fee)}</span>
+                            <Button size="lg">Enroll Now</Button>
+                        </div>
                     </div>
-                    <div className="flex gap-10 items-center mb-2">
-                        <span className="text-gray-600">Duration:</span>
-                        <span className="text-gray-800">{course.duration} Weeks</span>
-                    </div>
-                    <div className="flex gap-10 items-center mb-2">
-                        <span className="text-gray-600">Difficulty:</span>
-                        <span className="text-gray-800">{course.difficulty}</span>
-                    </div>
-                    <div className="flex gap-10 items-center mb-2">
-                        <span className="text-gray-600">Category:</span>
-                        <span className="text-gray-800">{course.category.name}</span>
-                    </div>
-                   
+
                 </div>
             </div>
+
         </div>
+        <div className="h-96 w-8/12 mt-10 space-y-3">
+        <h2 className="text-xl font-semibold border-b pb-2">Description</h2>
+        <p className="text-xl text-justify">{course.description}</p>
+    </div>
+    </>
     );
 };
 

@@ -16,25 +16,29 @@ const AdminDashboard = async () => {
   let CountData= [
     {
       name:"Total Students",
-      value:totalStudents
+      value:totalStudents,
+      color:"red"
     },
     {
       name:"Total Courses",
-      value:totalCourses
+      value:totalCourses,
+      color:"slate",
     },
     {
       name:"Total Admissions",
-      value:totalAdmissions
+      value:totalAdmissions,
+      color:"rose"
     },
     {
       name:"Total Payment",
-      value:totalPayments
+      value:totalPayments,
+      color:"blue"
     }
   ]
 
   return (
-  <div className="flex md:flex-row flex-col flex-1 gap-4 px-10 py-5 ">
-    {CountData.map((card)=><DashBoardCard text={card.name} count={card.value}/>)}
+  <div className="flex md:flex-row flex-1 gap-4 px-10 py-5 ">
+    {CountData.map((card,i)=><DashBoardCard key={i} text={card.name} count={card.value} color={card.color}/>)}
   </div>
   );
 };
