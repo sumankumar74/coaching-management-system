@@ -12,7 +12,7 @@ const page = async ({params}) => {
     let category = await Category.find({})
 
   return (
-    <div className='md:px-[5%] '>
+    <div className='md:px-[5%] h-auto '>
       <CategoriesBadges items={category}/>
         <ViewCoursePage course={course}/>
     </div>

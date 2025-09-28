@@ -7,7 +7,7 @@ import Image from "next/image";
 const ViewCoursePage = ({ course }) => {
     return (
         <>
-        <div className="w-full h-56 bg-teal-600" >
+        <div className="w-full h-auto bg-teal-600" >
             <div className="px-[10%] py-10 flex flex-col gap-y-3 w-9/12 h-full ">
                 <h1 className="text-white text-3xl capitalize ">{course.title}</h1>
                 <div className="flex items-center  text-white text-md ">
@@ -16,7 +16,7 @@ const ViewCoursePage = ({ course }) => {
                 </div>
                 <p className="text-md text-white">{course.description}</p>
             </div>
-            <div className="flex justify-end relative right-[50px] ">
+            <div className="flex justify-end items-start right-[50px]  ">
                 <div className="w-3/12 h-auto overflow-hidden bg-white border-teal-600 rounded-md border -mt-40">
                     <Image  width={300} height={250} className="object-cover" src={course.image} alt={course.title} />
                     <div className="p-4 space-y-2">
@@ -46,10 +46,7 @@ const ViewCoursePage = ({ course }) => {
             </div>
 
         </div>
-        <div className="h-96 w-8/12 mt-10 space-y-3">
-        <h2 className="text-xl font-semibold border-b pb-2">Description</h2>
-        <p className="text-xl text-justify">{course.description}</p>
-    </div>
+        
     </>
     );
 };

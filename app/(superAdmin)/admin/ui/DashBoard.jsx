@@ -7,10 +7,10 @@ import DashBoardCard from "./DashBoardCard";
 
 const AdminDashboard = async () => {
   //sample data
-  const totalStudents = await User.countDocuments({ status: true });
-  const totalCourses = await Course.countDocuments({ status: true });
+  const totalStudents = await User.countDocuments();
+  const totalCourses = await Course.countDocuments();
   const totalAdmissions = await User.countDocuments();
-  const totalPayments = await Course.countDocuments({ status: true });
+  const totalPayments = await Course.countDocuments();
 
 
   let CountData= [

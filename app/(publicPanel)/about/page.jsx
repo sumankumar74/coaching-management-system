@@ -10,7 +10,7 @@ const page = () => {
             <h2 className='text-3xl font-semibold font-serif text-teal-600 '>A free, world-class education for anyone, anywhere.</h2>
         </div>
         <AboutVision/>
-        <Footer/>
+        
     </div>
   )
 }

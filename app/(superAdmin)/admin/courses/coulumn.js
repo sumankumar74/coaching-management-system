@@ -17,10 +17,7 @@ export const columns =[
             </Button>
         },
     },
-    {
-        accessorKey:"description",
-        header:"Description",
-    },
+    
     {
         accessorKey:"fee",
         header:({column})=>{

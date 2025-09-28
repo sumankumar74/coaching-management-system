@@ -15,7 +15,7 @@ const CourseSchema = new mongoose.Schema({
     },
     instructor: {
         type: String,
-        default: 'Sadique Hussain',
+        default: 'Suman Kumar',
         required: null
     },
     difficulty: {
